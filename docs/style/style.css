@@ -16,6 +16,7 @@ body {
   visibility: hidden;
   position: relative;
   overflow: hidden;
+  z-index: 1; /* above background layers (.seven, .eight) */
 }
 
 .container div.six {
@@ -23,13 +24,21 @@ body {
   z-index: 1;
 }
 
-.container div.seven,
-.container div.eight {
+/* Background layers: outside .container so they aren't clipped by overflow */
+.seven,
+.eight {
   width: 100vw;
   height: 100vh;
   height: 100dvh;
   position: fixed;
   top: 0;
+  left: 0;
+  z-index: 0; /* behind .container (Happy Birthday content) */
+  pointer-events: none; /* don't block clicks on content */
+}
+
+.seven {
+  visibility: hidden; /* shown by GSAP when photo section starts */
 }
 
 .container > div {

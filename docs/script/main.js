@@ -170,6 +170,7 @@ const animationTimeline = () => {
       "+=1"
     )
     .add("photo")
+    .to(".seven", 0, { visibility: "visible" })
     .staggerFromTo(
       ".baloons img",
       2.5,
