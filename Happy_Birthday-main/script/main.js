@@ -112,12 +112,6 @@ const animationTimeline = () => {
     .from(".idea-2", 0.7, ideaTextTrans)
     .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
     .from(".idea-3", 0.7, ideaTextTrans)
-    .to(".idea-3 strong", 0.5, {
-      scale: 1.2,
-      x: 10,
-      backgroundColor: "rgb(21, 161, 237)",
-      color: "#fff"
-    })
     .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
     .from(".idea-4", 0.7, ideaTextTrans)
     .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
@@ -346,7 +340,7 @@ const animationTimeline = () => {
 
 // Import the data to customize and insert them into page
 const fetchData = () => {
-  fetch("customize.json")
+  return fetch("customize.json")
     .then(data => data.json())
     .then(data => {
       Object.keys(data).map(customData => {
@@ -363,12 +357,7 @@ const fetchData = () => {
     });
 };
 
-// Run fetch and animation in sequence
-const resolveFetch = () => {
-  return new Promise((resolve, reject) => {
-    fetchData();
-    resolve("Fetch done!");
-  });
-};
-
-resolveFetch().then(animationTimeline());
+// Run fetch first, then animation (so customization is visible from the start)
+fetchData()
+  .then(() => animationTimeline())
+  .catch(() => animationTimeline()); // If fetch fails (e.g. file missing), still run animation
