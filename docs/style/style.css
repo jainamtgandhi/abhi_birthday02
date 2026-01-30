@@ -290,14 +290,6 @@ body {
 .nav-arrow-left { padding-right: 2px; }
 .nav-arrow-right { padding-left: 2px; }
 
-/* Prevent horizontal overflow on narrow viewports */
-@media screen and (max-width: 500px) {
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-}
-
 /* Media Queries */
 @media screen and (max-height: 1000px) {
   .six .hat {
